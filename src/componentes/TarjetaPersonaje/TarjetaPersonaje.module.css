@@ -1,0 +1,105 @@
+/* ============================================
+   TarjetaPersonaje.module.css
+   Tarjeta de personaje — Rick & Morty Explorer
+   ============================================ */
+
+/* ============================================
+   TarjetaPersonaje.module.css
+   Tarjeta de personaje — Rick & Morty Explorer
+   ============================================ */
+
+/* TarjetaPersonaje.module.css - Versión Simplificada */
+
+.card {
+  background-color: #1a202c; /* Fondo oscuro fijo */
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #00e5b0; /* Color neón al pasar el mouse */
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 15px;
+  color: white;
+}
+
+.info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #00e5b0; /* Verde neón */
+  text-transform: uppercase;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.metaItem {
+  font-size: 0.85rem;
+  color: #cbd5e0;
+}
+
+.metaLabel {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #718096;
+}
+
+/* Badge de estado */
+.statusBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: white;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Colores de los puntos fijos */
+.alive { background-color: #48bb78; }
+.dead { background-color: #f56565; }
+.unknown { background-color: #a0aec0; }
+
+.cardFooter {
+  padding: 10px 15px;
+  border-top: 1px solid #2d3748;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #718096;
+}

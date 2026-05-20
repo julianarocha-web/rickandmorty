@@ -1,0 +1,282 @@
+/* ============================================
+   APP.CSS — Rick & Morty Explorer
+   Estética: Sci-fi oscura con neón portal
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500&display=swap');
+
+
+
+
+/* ── Variables globales ── */
+:root {
+  --color-bg:        #0a0e1a;
+  --color-surface:   #111827;
+  --color-card:      #141c2e;
+  --color-border:    #1e2d4a;
+  --color-portal:    #00e5b0;
+  --color-portal-2:  #00b5cc;
+  --color-accent:    #97ef39;
+  --color-danger:    #ff4757;
+  --color-text:      #e8edf5;
+  --color-muted:     #6b7a99;
+
+  --font-display:    'Orbitron', sans-serif;
+  --font-body:       'Exo 2', sans-serif;
+
+  --radius-card:     14px;
+  --shadow-glow:     0 0 20px rgba(0, 229, 176, 0.15);
+  --shadow-card:     0 8px 32px rgba(0, 0, 0, 0.5);
+  --transition:      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset y base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 229, 176, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 90% 80%, rgba(0, 181, 204, 0.05) 0%, transparent 60%);
+}
+
+/* ── Header / Hero ── */
+.app-header {
+  text-align: center;
+  padding: 56px 20px 40px;
+  position: relative;
+}
+
+.app-header::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-portal), transparent);
+  margin: 20px auto 0;
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--color-portal) 0%, var(--color-portal-2) 50%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 24px rgba(0, 229, 176, 0.4));
+}
+
+.app-subtitle {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+/* ── Buscador ── */
+.buscador-container {
+  margin: 0 auto 40px;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 520px;
+}
+
+.buscador-wrapper {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+}
+
+.buscador-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+  font-size: 1rem;
+  pointer-events: none;
+  transition: color var(--transition);
+}
+
+.buscador-input {
+  width: 100%;
+  padding: 14px 20px 14px 46px;
+  border-radius: 50px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.buscador-input::placeholder {
+  color: var(--color-muted);
+}
+
+.buscador-input:focus {
+  border-color: var(--color-portal);
+  box-shadow: 0 0 0 3px rgba(0, 229, 176, 0.1), var(--shadow-glow);
+}
+
+.buscador-input:focus + .buscador-icon,
+.buscador-wrapper:focus-within .buscador-icon {
+  color: var(--color-portal);
+}
+
+/* ── Stats bar ── */
+.stats-bar {
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+}
+
+.stats-bar span {
+  color: var(--color-portal);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ── Grid de personajes ── */
+.grid-personajes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 0 20px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 560px) {
+  .grid-personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid-personajes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-personajes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Mensaje vacío ── */
+.mensaje {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-muted);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.mensaje::before {
+  content: '◈';
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+/* ── Paginación ── */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px 60px;
+}
+
+.paginacion button {
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.paginacion button:hover:not(:disabled) {
+  border-color: var(--color-portal);
+  color: var(--color-portal);
+  box-shadow: var(--shadow-glow);
+}
+
+.paginacion button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.paginacion .page-info {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── Loading skeleton ── */
+.skeleton-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-border) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-text {
+  margin: 14px 14px 10px;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-border) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Scrollbar personalizado ── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--color-bg); }
+::-webkit-scrollbar-thumb  { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-portal); }
